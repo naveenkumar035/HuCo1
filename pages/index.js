@@ -1,6 +1,5 @@
 
 import  Link  from 'next/link'
-import Sidebar from './components/Sidebar'
 import Feed from './components/Feed'
 
 
