@@ -1,13 +1,26 @@
-import { Content } from "./Content.js"
-import { Box } from "./Box.js";
+import React from 'react';
+import Nav from "./Nav.js"
+import Theme from "./Theme.js"
 
-export const Layout = ({ children }) => (
-  <Box
-    css={{
-      maxW: "100%"
-    }}
-  >
-    {children}
-    <Content />
-  </Box>
-);
+
+
+
+ const Layout = ({ children }) => (
+  <>
+    
+    <Theme/>
+    <Nav/>
+    
+    <div>
+      <main>
+        
+        {children}
+      </main>
+    </div>
+    
+   
+  </>
+); 
+
+
+export default Layout;

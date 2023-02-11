@@ -1,4 +1,4 @@
-import Nav from './components/Nav'
+import Nav from "./Nav.js"
  
  export default function Header(){
    return(

@@ -1,27 +1,30 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp, getApps,  getApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp, getApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getStorage }  from "firebase/storage";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC27TEUcpADXtmUoYnL2skcYJPyPY0v9mY",
-  authDomain: "huco-8388a.firebaseapp.com",
-  projectId: "huco-8388a",
-  storageBucket: "huco-8388a.appspot.com",
-  messagingSenderId: "41974105388",
-  appId: "1:41974105388:web:bc7c12098d04128b519889",
-  measurementId: "G-YEGKM6P13Z"
-};
+    apiKey: "AIzaSyDOsqxQXCUmuRCR_HLUC91yIBgsOrIgRP0",
+    authDomain: "huco-9f896.firebaseapp.com",
+    databaseURL: "https://huco-9f896-default-rtdb.firebaseio.com",
+    projectId: "huco-9f896",
+    storageBucket: "huco-9f896.appspot.com",
+    messagingSenderId: "692689852368",
+    appId: "1:692689852368:web:06562137751fe56d8d4bd5",
+    measurementId: "G-HRPMY2CPJS"
+  };
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const db = getFirestore();
+const db = getFirestore(app);
 const storage = getStorage();
-const analytics = getAnalytics(app);
 
-export ( app, db, storage );
+
+export {db, storage};
+export default app;
