@@ -28,7 +28,7 @@ export default function Nav() {
            
          
           <Text b color="inherit" hideIn="xs">
-            
+            HuCo
           </Text>
         </Navbar.Brand>
       

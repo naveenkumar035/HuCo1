@@ -10,9 +10,9 @@ function Post({ id, post}){
             {post?.text}
 
            </p>
-           <div className="icon group flex-shrink ml-auto">
+           {/*<div className="icon group flex-shrink ml-auto">
               <DotsHorizontalIcon className="h-5 text-gray group-hover:text-black"/>
-           </div>
+    </div>*/}
            
            <img 
            src={post?.image}
