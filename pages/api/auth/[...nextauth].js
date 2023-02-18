@@ -7,7 +7,7 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      Secret: process.env.NEXTAUTH_SECRET
+      
     }),
     // ...add more providers here
   ],
@@ -22,6 +22,8 @@ export const authOptions = {
       return session;
     },
   },
+
+  secret: process.env.JWT_SECRET,
    
 }
  
