@@ -1,11 +1,17 @@
-import { Navbar, Button, Link, Text, useTheme } from "@nextui-org/react";
+import { Navbar, Button, Link, Text, useTheme, User } from "@nextui-org/react";
 import { PlusCircleIcon } from "@heroicons/react/outline"
+import { BeakerIcon } from '@heroicons/react/solid'
+import { Tooltip } from "@nextui-org/react";
+import { Dropdown } from "@nextui-org/react" ;
+import { LogoutIcon } from  '@heroicons/react/outline'
 
 
 import { signOut, signIn , useSession } from "next-auth/react";
 
 
 import { useState } from "react";
+import { UserIcon } from "@heroicons/react/solid";
+import { EyeIcon } from '@heroicons/react/solid';
 
 
 export default function Nav() {
@@ -16,6 +22,7 @@ export default function Nav() {
   const { isDark } = useTheme();
    const [theme, setTheme] = useState("light")
 
+   const [iconEnabled, setIconEnabled] = useState(true);
 
   const { data: session } = useSession();
 
@@ -42,30 +49,70 @@ export default function Nav() {
 
         <Navbar.Content>
           <>
+          <Link href="System">
+
+          <Tooltip content= "System" color="invert" placement="bottom">
+           <EyeIcon className="h-6 w-6 text-black"/>
+           </Tooltip>
+           </Link>
+           <Link href="Market">
+           <Tooltip content= "Market" color="invert" placement="bottom">
+           <BeakerIcon className="h-6 w-6 text-black" />
+           </Tooltip>
+           </Link>
+          
           {session ? (
+           
+             <Dropdown placement="bottom-left">
+              <Dropdown.Trigger>
                 <img
-                onClick={ signOut }
+                
                 src={session?.user?.image}
                 alt="profile pic"
                 className="h-10 rounded-full cursor-pointer"
               />
+                   </Dropdown.Trigger>
+                   <Dropdown.Menu color="invert" aria-label="Avatar Actions">
+            <Dropdown.Item key="profile" css={{ height: "$18" }}>
+              <Text b color="inherit" css={{ d: "flex" }}>
+                Signed in as
+              </Text>
+              <Text b color="inherit" css={{ d: "flex" }}>
+                 {session?.user?.email}
+              </Text>
+            </Dropdown.Item>
+            <Dropdown.Item key="settings" withDivider>
+              Profile
+            </Dropdown.Item>
+            <Dropdown.Item key="team_settings"> Settings</Dropdown.Item>
+            <Dropdown.Item key="analytics" withDivider>
+              Analytics
+            </Dropdown.Item>
+            <Dropdown.Item key="system">System</Dropdown.Item>
+            <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
+            <Dropdown.Item key="help_and_feedback" withDivider>
+              Help & Feedback
+            </Dropdown.Item>
+            <Dropdown.Item key="Sign out"  withDivider >
+               <LogoutIcon className="h-6 w-6" onClick={ signOut } /> 
+            </Dropdown.Item>
+          </Dropdown.Menu>
+            </Dropdown>
 
+          
           ): (
-            <>
-          <Navbar.Link color="inherit" href="#">
             
-          </Navbar.Link>
-          <Navbar.Item>
-            <Button style={{ color: 'black' }}  auto flat as={Link} onClick={ signIn }>
-              
-            </Button>
-          </Navbar.Item>
-          </>
+           
+            <UserIcon className="h-6 w-6" onClick={ signIn } />
+       
+      
           )
           }
-      
+          
+        
         </>
      </Navbar.Content>
+    
      
      <Navbar.Collapse>
         {collapseItems.map((item, index) => (
@@ -95,4 +142,5 @@ export default function Nav() {
     
   )
 }
+
 
