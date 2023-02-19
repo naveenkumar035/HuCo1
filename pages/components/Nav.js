@@ -55,8 +55,8 @@ export default function Nav() {
            <EyeIcon className="h-6 w-6 text-black"/>
            </Tooltip>
            </Link>
-           <Link href="Market">
-           <Tooltip content= "Market" color="invert" placement="bottom">
+           <Link href="Hub">
+           <Tooltip content= "Hub" color="invert" placement="bottom">
            <BeakerIcon className="h-6 w-6 text-black" />
            </Tooltip>
            </Link>

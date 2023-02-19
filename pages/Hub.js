@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-function Market({providers}){
+function Hub(){
     return(
        <>
         <Head>
@@ -14,4 +14,4 @@ function Market({providers}){
 }
 
 
-export default Market
+export default Hub
