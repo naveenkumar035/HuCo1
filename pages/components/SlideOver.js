@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/outline'
+
 
  function SlideOver() {
   const [open, setOpen] = useState(true)
