@@ -26,8 +26,14 @@ function About() {
 
 Thank you for joining us on this journey of conscious expansion. We look forward to sharing and learning with you!
   </p>*/}
+     <h3> HuCo-System </h3>
+     <p>  you can create and develop your own belief system based on your personal values, experiences, and worldview.</p>
+    <p>Our system page is designed to guide you through the process of defining your beliefs and principles. We provide prompts and questions to help you reflect on your thoughts and experiences, and to encourage you to explore your values and worldview more deeply.</p>
+    <p>You will be able to define your own beliefs on topics such as morality, spirituality, ethics, social and political issues, and more. You can also reflect on how your beliefs intersect with different aspects of your life, such as relationships, career, and personal growth.</p>
+    <p>Our system page allows you to create a comprehensive belief system that reflects your unique perspective and values. You will be able to revise and refine your beliefs over time, as you continue to grow and evolve.</p>
+    <p>We believe that creating your own belief system can be a powerful tool for personal growth and self-discovery. We hope that our system page provides you with the resources and guidance you need to develop a belief system that feels authentic and meaningful to you.</p>
     </div>
-  )
+  ) 
 }
 
 export default About

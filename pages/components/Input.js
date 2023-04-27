@@ -1,59 +1,39 @@
 import { EmojiHappyIcon, PlusCircleIcon, XIcon } from "@heroicons/react/outline";
 import {useRef, useState} from "react";
 import { Picker } from 'emoji-mart'
-
-
+import { useSession  } from "next-auth/react";
 import { 
     addDoc,
     collection,
     doc,
     serverTimestamp,
     updateDoc,
-    
-    
-    
  } from "firebase/firestore";
-
-
 import {  getDownloadURL, ref, uploadString } from "firebase/storage";
-
-import {  db, storage } from '../../firebase';
-
-
-
-
-
-
+import {  db, storage } from '../../firebase'; 
 
 
 function Input(){
-    
-
-
     const [input, setInput] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [showEmojis, setShowEmojis] = useState(false)
     const filePickerRef = useRef(null);
-     
-     const [loading, setLoading] = useState(false)
-
+    const { data: session } = useSession();
+    console.log(session);   
+    const [loading, setLoading] = useState(false)
     const sendPost = async () => {
         if(loading) return;
-        
         setLoading(true);
         const docRef = await addDoc(collection(db,'posts'), {
-            
        // id: session.user.uid,
        // username: session.user.name,
         //userImg: session.user.image,
        // tag: session.user.tag,
+        email: session?.user?.email,
         text: input,
-        timestamp: serverTimestamp(),
-        
-        });
-        
-        const imageRef = ref(storage, `posts/${docRef.id}/image`);
-       
+        timestamp: serverTimestamp(),       
+        });       
+        const imageRef = ref(storage, `posts/${docRef.id}/image`);  
         if(selectedFile) {
             await uploadString(imageRef,selectedFile,"data_url").then( async () => {
                 const downloadURL = await getDownloadURL(imageRef);
@@ -62,14 +42,11 @@ function Input(){
                         image: downloadURL,
                     });
             });
-        }
-        
-        
+        }           
         setLoading(false);
         setInput("");
         setSelectedFile(null);
         setShowEmojis(false);
-
     };
     const addShitToPost = (e) => {
         const reader = new FileReader();
@@ -80,22 +57,14 @@ function Input(){
             setSelectedFile(readerEvent.target.result);
         };
     };
-  
-   
     //const addEmoji = (e) => {
       //  const picker = new Picker();
-
       //  let sym = e.unified.split("-");
       //  let codesArray = [];
        // sym.forEach((el) => codesArray.push("0x" + el));
       //  let emoji = String.fromCodePoint(...codesArray);
       //  setInput(input + emoji);
     // }; 
-   
-      
-        
-    
-   
     return (
         <div className={'border-b border-black-700 p-3 flex space-x-3 overflow-y-scroll $ { loading && "opacity-60} '}>
             <div className="w-full divide-y divide-black-700">

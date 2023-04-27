@@ -3,7 +3,7 @@ import { query, collection, onSnapshot, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Input from "./Input";
 import Post from "./Post";
-import {  db, storage } from '../../firebase';
+import {  db, storage } from '../../firebase'; 
 import { Link } from "@nextui-org/react";
 import About from "../About";
 

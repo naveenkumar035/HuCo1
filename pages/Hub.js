@@ -1,6 +1,9 @@
 import Head from 'next/head'
 
 function Hub(){
+
+
+  
     return(
        <>
         <Head>

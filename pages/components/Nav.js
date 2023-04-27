@@ -4,20 +4,26 @@ import { BeakerIcon } from '@heroicons/react/solid'
 import { Tooltip } from "@nextui-org/react";
 import { Dropdown } from "@nextui-org/react" ;
 import { LogoutIcon } from  '@heroicons/react/outline'
-
-
 import { signOut, signIn , useSession } from "next-auth/react";
-
-
 import { useState } from "react";
 import { UserIcon } from "@heroicons/react/solid";
 import { EyeIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
+import { SearchIcon } from '@heroicons/react/solid';
 
 
 export default function Nav() {
-  const collapseItems = [
+  function handleOpenSlideOver() {
+    setIsSlideOverOpen(true);
+  }
 
-    
+  function handleCloseSlideOver() {
+    setIsSlideOverOpen(false);
+  }
+
+  const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+  const router = useRouter();
+  const collapseItems = [
   ];
   const { isDark } = useTheme();
    const [theme, setTheme] = useState("light")
@@ -30,16 +36,26 @@ export default function Nav() {
 
   return (
      
-    <Navbar shouldHideOnScroll isBordered={isDark} variant="sticky">
-        <Navbar.Brand>
-           
-         
+    <Navbar  isBordered={isDark} variant="sticky">
+       {router.pathname === '/' && (
+          <Navbar.Brand>
           <Text b color="inherit" >
             HuCo
           </Text>
         </Navbar.Brand>
-      
-       
+       )}
+       {router.pathname === '/System' && (
+        <Navbar.Brand>
+             <div>
+        <button onClick={handleOpenSlideOver}>
+        
+        <SearchIcon className="block lg:hidden h-6 w-6 text-black"/>
+        </button>
+        <SlideOver isOpen={isSlideOverOpen} onClose={handleCloseSlideOver} />
+      </div>
+    
+        </Navbar.Brand>
+        )}
         <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
           <Navbar.Link style={{ color: 'black' }} href="#"> </Navbar.Link>
           <Navbar.Link style={{ color: 'black' }}  href="#"></Navbar.Link>
@@ -48,25 +64,25 @@ export default function Nav() {
         </Navbar.Content>
 
         <Navbar.Content>
-          <>
-          <Link href="System">
-
-          <Tooltip content= "System" color="invert" placement="bottom">
-           <EyeIcon className="h-6 w-6 text-black"/>
-           </Tooltip>
-           </Link>
-           <Link href="Hub">
-           <Tooltip content= "Hub" color="invert" placement="bottom">
-           <BeakerIcon className="h-6 w-6 text-black" />
-           </Tooltip>
-           </Link>
           
           {session ? (
+                <>
+                  <Link href="System">
+
+                  <Tooltip content= "System" color="invert" placement="bottom">
+                   <EyeIcon className="h-6 w-6 text-black"/>
+                   </Tooltip>
+                   </Link>
+                   <Link href="Hub">
+                   <Tooltip content= "Hub" color="invert" placement="bottom">
+                   <BeakerIcon className="h-6 w-6 text-black" />
+                   </Tooltip>
+                   </Link>
+
            
              <Dropdown placement="bottom-left">
               <Dropdown.Trigger>
                 <img
-                
                 src={session?.user?.image}
                 alt="profile pic"
                 className="h-10 rounded-full cursor-pointer"
@@ -93,24 +109,27 @@ export default function Nav() {
             <Dropdown.Item key="help_and_feedback" withDivider>
               Help & Feedback
             </Dropdown.Item>
-            <Dropdown.Item key="Sign out"  withDivider >
+            
+            <Dropdown.Item key="Sign out"  withDivider > 
+            
                <LogoutIcon className="h-6 w-6" onClick={ signOut } /> 
+              
             </Dropdown.Item>
           </Dropdown.Menu>
             </Dropdown>
 
-          
+          </>
           ): (
             
            
-            <UserIcon className="h-6 w-6" onClick={ signIn } />
+            <UserIcon className="h-6 w-6 " onClick={ signIn } />
        
       
           )
           }
           
         
-        </>
+        
      </Navbar.Content>
     
      
