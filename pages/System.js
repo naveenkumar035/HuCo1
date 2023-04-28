@@ -38,7 +38,7 @@ function System(){
         </span>
         </div>
         
-        <div className="bg-[#36393f] flex-grow">
+        <div className="bg-[#36393f] object-contain flex-grow">
           <SystemInput/>
         </div>
       </div>

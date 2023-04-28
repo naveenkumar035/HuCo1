@@ -11,6 +11,10 @@
         transition duration-200 ease-out;
 
     }
+    .form-no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    
     .navbtn {
         @apply  h-6 md:inline-flex
         cursor-pointer hover:scale-125

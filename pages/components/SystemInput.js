@@ -7,6 +7,7 @@ import { useSession  } from "next-auth/react";
 import Tip from "./Tip";
 import {useRouter} from "next/navigation";
 
+
 function SystemInput(){
     const router =  useRouter();
     const { data: session } = useSession();
@@ -136,8 +137,9 @@ function SystemInput(){
             
            
         </main>
-        <div className="flex  items-center p-2.5 bg-[#40444b] mx-5 mb-7 rounded-lg object-contain">
-             <form className="flex-grow "  >
+        
+        <div className="flex  items-center p-2.5 fixed bottom-0 left-30 w-3/4 bg-[#40444b] py-4 mx-5 mb-7 rounded-lg ">
+             <form className="flex-grow  "  >
                 <input
                       value={input} 
                       onChange={(e) => setInput(e.target.value)}
@@ -168,6 +170,7 @@ function SystemInput(){
                </Popover.Content>
              </Popover>
         </div>
+      
         </>
         )}
         {chat &&(
