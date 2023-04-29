@@ -127,15 +127,12 @@ function SystemInput(){
         {showSegment && (
           <>
         <main className="flex-grow overflow-y-scroll scrollbar-hide">
-        
             <div>
         {tips.map((tip) => (
             <Tip key={tip.id} id={tip.id} tip={tip.data()} />
             ))} 
             <div ref={tipRef} className="pb-16"/>
             </div>
-            
-           
         </main>
         
         <div className="flex  items-center p-2.5 fixed bottom-0 left-30 w-3/4 bg-[#40444b] py-4 mx-5 mb-7 rounded-lg ">
